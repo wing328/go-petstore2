@@ -9,9 +9,8 @@
 
 package openapi
 
-// Describes the result of uploading an image resource
-type ApiResponse struct {
-	Code int32 `json:"code,omitempty"`
-	Type string `json:"type,omitempty"`
-	Message string `json:"message,omitempty"`
+// A category for a pet
+type Category struct {
+	Id int64 `json:"id,omitempty"`
+	Name string `json:"name,omitempty"`
 }

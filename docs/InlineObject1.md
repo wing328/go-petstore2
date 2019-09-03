@@ -1,11 +1,11 @@
-# ModelApiResponse
+# InlineObject1
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Code** | **int32** |  | [optional] [default to null]
-**Type_** | **string** |  | [optional] [default to null]
-**Message** | **string** |  | [optional] [default to null]
+**AdditionalMetadata** | **string** | Additional data to pass to server | [optional] 
+**File** | [***os.File**](*os.File.md) | file to upload | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
