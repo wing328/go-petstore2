@@ -11,13 +11,13 @@ package openapi
 
 import (
 	_context "context"
-	"fmt"
-	"github.com/antihax/optional"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"os"
+	"fmt"
 	"strings"
+	"github.com/antihax/optional"
+	"os"
 )
 
 // Linger please
@@ -99,7 +99,7 @@ PetApiService Deletes a pet
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param petId Pet id to delete
  * @param optional nil or *DeletePetOpts - Optional Parameters:
- * @param "ApiKey" (optional.String) -
+ * @param "ApiKey" (optional.String) - 
 */
 
 type DeletePetOpts struct {
@@ -523,7 +523,7 @@ PetApiService Updates a pet in the store with form data
 */
 
 type UpdatePetWithFormOpts struct {
-	Name   optional.String
+	Name optional.String
 	Status optional.String
 }
 
@@ -606,7 +606,7 @@ PetApiService uploads an image
 
 type UploadFileOpts struct {
 	AdditionalMetadata optional.String
-	File               optional.Interface
+	File optional.Interface
 }
 
 func (a *PetApiService) UploadFile(ctx _context.Context, petId int64, localVarOptionals *UploadFileOpts) (ApiResponse, *_nethttp.Response, error) {
@@ -653,7 +653,7 @@ func (a *PetApiService) UploadFile(ctx _context.Context, petId int64, localVarOp
 		localVarFileOk := false
 		localVarFile, localVarFileOk = localVarOptionals.File.Value().(*os.File)
 		if !localVarFileOk {
-			return localVarReturnValue, nil, reportError("file should be *os.File")
+				return localVarReturnValue, nil, reportError("file should be *os.File")
 		}
 	}
 	if localVarFile != nil {

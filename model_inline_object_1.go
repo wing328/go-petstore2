@@ -8,7 +8,6 @@
  */
 
 package openapi
-
 import (
 	"os"
 )
