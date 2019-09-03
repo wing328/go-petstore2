@@ -13,6 +13,7 @@ import (
 	"os"
 )
 
+// InlineObject1 struct for InlineObject1
 type InlineObject1 struct {
 	// Additional data to pass to server
 	AdditionalMetadata string `json:"additionalMetadata,omitempty"`
