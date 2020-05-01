@@ -17,20 +17,53 @@ Method | HTTP request | Description
 
 ## AddPet
 
-> AddPet(ctx, pet)
+> Pet AddPet(ctx).Pet(pet).Execute()
+
 Add a new pet to the store
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pet := openapiclient.Pet{Id: int64(123), Category: openapiclient.Category{Id: int64(123), Name: "Name_example"}, Name: "Name_example", PhotoUrls: []string{"PhotoUrls_example"), Tags: []Tag{openapiclient.Tag{Id: int64(123), Name: "Name_example"}), Status: "Status_example"} // Pet | Pet object that needs to be added to the store
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PetApi.AddPet(context.Background(), pet).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.AddPet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddPet`: Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.AddPet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddPetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pet** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | 
+ **pet** | [**Pet**](Pet.md) | Pet object that needs to be added to the store | 
 
 ### Return type
 
- (empty response body)
+[**Pet**](Pet.md)
 
 ### Authorization
 
@@ -39,7 +72,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/xml
-- **Accept**: Not defined
+- **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -48,27 +81,53 @@ Name | Type | Description  | Notes
 
 ## DeletePet
 
-> DeletePet(ctx, petId, optional)
+> DeletePet(ctx, petId).ApiKey(apiKey).Execute()
+
 Deletes a pet
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    petId := 987 // int64 | Pet id to delete
+    apiKey := "apiKey_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PetApi.DeletePet(context.Background(), petId).ApiKey(apiKey).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.DeletePet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**petId** | **int64**| Pet id to delete | 
- **optional** | ***DeletePetOpts** | optional parameters | nil if no parameters
+**petId** | **int64** | Pet id to delete | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a DeletePetOpts struct
+Other parameters are passed through a pointer to a apiDeletePetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **apiKey** | **optional.String**|  | 
+ **apiKey** | **string** |  | 
 
 ### Return type
 
@@ -90,18 +149,51 @@ Name | Type | Description  | Notes
 
 ## FindPetsByStatus
 
-> []Pet FindPetsByStatus(ctx, status)
+> []Pet FindPetsByStatus(ctx).Status(status).Execute()
+
 Finds Pets by status
 
-Multiple status values can be provided with comma separated strings
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    status := []string{"Status_example"} // []string | Status values that need to be considered for filter
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PetApi.FindPetsByStatus(context.Background(), status).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.FindPetsByStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindPetsByStatus`: []Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.FindPetsByStatus`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindPetsByStatusRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**status** | [**[]string**](string.md)| Status values that need to be considered for filter | 
+ **status** | [**[]string**](string.md) | Status values that need to be considered for filter | 
 
 ### Return type
 
@@ -123,18 +215,51 @@ Name | Type | Description  | Notes
 
 ## FindPetsByTags
 
-> []Pet FindPetsByTags(ctx, tags)
+> []Pet FindPetsByTags(ctx).Tags(tags).Execute()
+
 Finds Pets by tags
 
-Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    tags := []string{"Inner_example"} // []string | Tags to filter by
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PetApi.FindPetsByTags(context.Background(), tags).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.FindPetsByTags``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `FindPetsByTags`: []Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.FindPetsByTags`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFindPetsByTagsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**tags** | [**[]string**](string.md)| Tags to filter by | 
+ **tags** | [**[]string**](string.md) | Tags to filter by | 
 
 ### Return type
 
@@ -156,18 +281,55 @@ Name | Type | Description  | Notes
 
 ## GetPetById
 
-> Pet GetPetById(ctx, petId)
+> Pet GetPetById(ctx, petId).Execute()
+
 Find pet by ID
 
-Returns a single pet
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    petId := 987 // int64 | ID of pet to return
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PetApi.GetPetById(context.Background(), petId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.GetPetById``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPetById`: Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.GetPetById`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**petId** | **int64**| ID of pet to return | 
+**petId** | **int64** | ID of pet to return | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPetByIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -189,20 +351,53 @@ Name | Type | Description  | Notes
 
 ## UpdatePet
 
-> UpdatePet(ctx, pet)
+> Pet UpdatePet(ctx).Pet(pet).Execute()
+
 Update an existing pet
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pet := openapiclient.Pet{Id: int64(123), Category: openapiclient.Category{Id: int64(123), Name: "Name_example"}, Name: "Name_example", PhotoUrls: []string{"PhotoUrls_example"), Tags: []Tag{openapiclient.Tag{Id: int64(123), Name: "Name_example"}), Status: "Status_example"} // Pet | Pet object that needs to be added to the store
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PetApi.UpdatePet(context.Background(), pet).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UpdatePet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdatePet`: Pet
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.UpdatePet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdatePetRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**pet** | [**Pet**](Pet.md)| Pet object that needs to be added to the store | 
+ **pet** | [**Pet**](Pet.md) | Pet object that needs to be added to the store | 
 
 ### Return type
 
- (empty response body)
+[**Pet**](Pet.md)
 
 ### Authorization
 
@@ -211,7 +406,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json, application/xml
-- **Accept**: Not defined
+- **Accept**: application/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -220,28 +415,55 @@ Name | Type | Description  | Notes
 
 ## UpdatePetWithForm
 
-> UpdatePetWithForm(ctx, petId, optional)
+> UpdatePetWithForm(ctx, petId).Name(name).Status(status).Execute()
+
 Updates a pet in the store with form data
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    petId := 987 // int64 | ID of pet that needs to be updated
+    name := "name_example" // string | Updated name of the pet (optional)
+    status := "status_example" // string | Updated status of the pet (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PetApi.UpdatePetWithForm(context.Background(), petId).Name(name).Status(status).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UpdatePetWithForm``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**petId** | **int64**| ID of pet that needs to be updated | 
- **optional** | ***UpdatePetWithFormOpts** | optional parameters | nil if no parameters
+**petId** | **int64** | ID of pet that needs to be updated | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UpdatePetWithFormOpts struct
+Other parameters are passed through a pointer to a apiUpdatePetWithFormRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **name** | **optional.String**| Updated name of the pet | 
- **status** | **optional.String**| Updated status of the pet | 
+ **name** | **string** | Updated name of the pet | 
+ **status** | **string** | Updated status of the pet | 
 
 ### Return type
 
@@ -263,28 +485,57 @@ Name | Type | Description  | Notes
 
 ## UploadFile
 
-> ApiResponse UploadFile(ctx, petId, optional)
+> ApiResponse UploadFile(ctx, petId).AdditionalMetadata(additionalMetadata).File(file).Execute()
+
 uploads an image
 
-### Required Parameters
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    petId := 987 // int64 | ID of pet to update
+    additionalMetadata := "additionalMetadata_example" // string | Additional data to pass to server (optional)
+    file := 987 // *os.File | file to upload (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PetApi.UploadFile(context.Background(), petId).AdditionalMetadata(additionalMetadata).File(file).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PetApi.UploadFile``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UploadFile`: ApiResponse
+    fmt.Fprintf(os.Stdout, "Response from `PetApi.UploadFile`: %v\n", resp)
+}
+```
+
+### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**petId** | **int64**| ID of pet to update | 
- **optional** | ***UploadFileOpts** | optional parameters | nil if no parameters
+**petId** | **int64** | ID of pet to update | 
 
-### Optional Parameters
+### Other Parameters
 
-Optional parameters are passed through a pointer to a UploadFileOpts struct
+Other parameters are passed through a pointer to a apiUploadFileRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **additionalMetadata** | **optional.String**| Additional data to pass to server | 
- **file** | **optional.Interface of *os.File****optional.*os.File**| file to upload | 
+ **additionalMetadata** | **string** | Additional data to pass to server | 
+ **file** | ***os.File** | file to upload | 
 
 ### Return type
 
