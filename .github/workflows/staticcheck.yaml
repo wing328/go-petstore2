@@ -2,8 +2,7 @@ name: "CI"
 on: ["push", "pull_request"]
 
 jobs:
-  ci:
-	name: "Run CI"
+  build:
 	strategy:
 	  fail-fast: false
 	  matrix:
