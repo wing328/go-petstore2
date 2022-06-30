@@ -18,6 +18,7 @@ jobs:
     - uses: WillAbides/setup-go-faster@v1.7.0
       with:
         go-version: ${{ matrix.go }}
+    - run: "go get github.com/wing328/go-petstore2"
     - run: "go test ./..."
     - run: "go vet ./..."
     - uses: dominikh/staticcheck-action@v1.2.0
