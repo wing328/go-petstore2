@@ -1,4 +1,4 @@
-module github.com/GIT_USER_ID/GIT_REPO_ID
+module github.com/wing328/go-petstore2
 
 go 1.13
 
